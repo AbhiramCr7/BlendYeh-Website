@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@theme {
+  --color-blend-purple: #8B5CF6;
+  --color-blend-orange: #C45214;
+  --color-dark-bg: #050505;
+  --color-dark-surface: #111111;
+  --color-dark-border: rgba(255, 255, 255, 0.08);
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-dark-bg text-[#F5F5F5] font-sans antialiased overflow-x-hidden;
+}
+
+::selection {
+  @apply bg-blend-orange text-white;
+}
+
+.glass-nav {
+  @apply bg-[#050505]/80 backdrop-blur-xl border-b border-white/5;
+}
+
+/* Engineered Card Style */
+.glass-card {
+  @apply bg-[#111111] border border-white/5 rounded-2xl transition-all duration-300 hover:border-blend-orange/30 hover:shadow-[0_0_30px_-5px_rgba(255,106,26,0.15)] relative overflow-hidden;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+}
+
+/* Industrial Buttons */
+.btn-primary {
+  @apply bg-[#111111] border border-blend-orange/50 text-[#F5F5F5] font-semibold rounded-lg px-8 py-4 transition-all duration-300 hover:bg-blend-orange hover:text-white hover:shadow-[0_0_20px_rgba(255,106,26,0.4)] flex items-center justify-center gap-2;
+}
+
+.btn-secondary {
+  @apply bg-transparent border border-white/10 text-gray-300 font-semibold rounded-lg px-8 py-4 transition-all duration-300 hover:bg-white/5 hover:border-white/20 hover:text-white flex items-center justify-center gap-2;
+}
+
+/* Text Accent */
+.text-accent-orange {
+  @apply text-blend-orange font-bold;
+}
+
+/* Industrial Background Lighting */
+.bg-glow-orange {
+  background: radial-gradient(circle at center, rgba(255, 106, 26, 0.15) 0%, transparent 70%);
+}
+.bg-glow-purple {
+  background: radial-gradient(circle at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF6A1A;
+}
