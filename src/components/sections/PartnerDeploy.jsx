@@ -37,8 +37,8 @@ const PartnerDeploy = () => {
             
             <div className="glass-card p-6 border-l-4 border-l-blend-orange">
               <h3 className="font-bold text-white mb-2">Direct Inquiry</h3>
-              <a href="mailto:samrudh.r@foodyeh.io" className="text-blend-orange hover:text-white transition-colors">
-                samrudh.r@foodyeh.io
+              <a href="mailto:info@foodyeh.io" className="text-blend-orange hover:text-white transition-colors">
+                info@foodyeh.io
               </a>
             </div>
           </motion.div>
@@ -50,19 +50,26 @@ const PartnerDeploy = () => {
             viewport={{ once: true }}
           >
             <h3 className="text-2xl font-bold mb-6">Partnership Form</h3>
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+            <form action="https://formsubmit.co/samrudh.r@foodyeh.io" method="POST" className="space-y-4">
+              {/* Honeypot to prevent spam */}
+              <input type="text" name="_honey" style={{ display: 'none' }} />
+              {/* Disable Captcha for smoother UX, optional */}
+              <input type="hidden" name="_captcha" value="false" />
+              {/* Success redirect */}
+              <input type="hidden" name="_next" value={window.location.href} />
+
               <div className="grid grid-cols-2 gap-4">
-                <input type="text" placeholder="First Name" className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors" />
-                <input type="text" placeholder="Last Name" className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors" />
+                <input type="text" name="First Name" required placeholder="First Name" className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors" />
+                <input type="text" name="Last Name" required placeholder="Last Name" className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors" />
               </div>
-              <input type="email" placeholder="Work Email" className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors" />
-              <select defaultValue="" className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors appearance-none">
+              <input type="email" name="Email" required placeholder="Work Email" className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors" />
+              <select name="Location Type" defaultValue="" required className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors appearance-none">
                 <option value="" disabled>Select Location Type...</option>
                 {locations.map(loc => <option key={loc} value={loc}>{loc}</option>)}
                 <option value="Other">Other</option>
               </select>
-              <textarea placeholder="Tell us about your space..." rows={3} className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors"></textarea>
-              <button className="btn-primary w-full">
+              <textarea name="Space Details" required placeholder="Tell us about your space..." rows={3} className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors"></textarea>
+              <button type="submit" className="btn-primary w-full">
                 Submit Inquiry
               </button>
             </form>

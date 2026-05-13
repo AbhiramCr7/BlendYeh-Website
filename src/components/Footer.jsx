@@ -18,7 +18,7 @@ const Footer = () => {
             <h4 className="text-white font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>Bangalore, India</li>
-              <li><a href="mailto:samrudh.r@foodyeh.io" className="hover:text-blend-orange transition-colors">samrudh.r@foodyeh.io</a></li>
+              <li><a href="mailto:info@foodyeh.io" className="hover:text-blend-orange transition-colors">info@foodyeh.io</a></li>
             </ul>
           </div>
         </div>

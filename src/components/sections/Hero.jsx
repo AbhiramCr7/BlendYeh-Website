@@ -32,7 +32,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-12 bg-dark-bg">
+    <section className="relative min-h-[100dvh] flex items-start lg:items-center justify-center overflow-hidden pt-10 lg:pt-12 pb-12 bg-dark-bg">
       {/* Industrial Directional Lighting */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-glow-orange opacity-40 translate-x-1/4 -translate-y-1/4" />
@@ -45,24 +45,22 @@ const Hero = () => {
           
           {/* Text Content */}
           <motion.div 
-            className="flex-1 text-center lg:text-left"
+            className="flex-1 w-full flex flex-col items-center lg:items-start text-center lg:text-left"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[1.1] mb-6 text-[#F5F5F5]">
-              Autonomous Beverage <br className="hidden md:block" />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blend-orange via-[#FF8540] to-blend-purple pr-2">
-                Kiosk
-              </span> <br />
-              <span className="text-4xl md:text-5xl text-gray-400 font-bold">for High-Footfall Environments</span>
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-tight mb-6 text-[#F5F5F5] w-full text-center lg:text-left mx-auto lg:mx-0">
+              <span className="block lg:inline w-full">Autonomous Beverage</span>
+              <span className="block lg:inline w-full bg-clip-text text-transparent bg-gradient-to-r from-blend-orange via-[#FF8540] to-blend-purple lg:ml-2">Kiosk</span>
+              <span className="block w-full text-2xl md:text-4xl lg:text-5xl text-gray-400 font-bold mt-2 md:mt-4 leading-tight">for High-Footfall Environments</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto lg:mx-0 font-medium">
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-8 w-full max-w-2xl mx-auto lg:mx-0 font-medium text-center lg:text-left">
               Fresh smoothies, protein drinks, milkshakes, hydration beverages, and personalized functional drinks — autonomously prepared in under 60 seconds.
             </p>
 
-            <div className="h-16 mb-8 flex items-center justify-center lg:justify-start border-l-4 border-blend-orange pl-6 ml-4 lg:ml-0">
+            <div className="min-h-[4rem] py-2 mb-8 flex items-center justify-center lg:justify-start border-l-0 lg:border-l-4 border-blend-orange pl-0 lg:pl-6 mx-auto lg:mx-0 w-full lg:max-w-none text-center lg:text-left">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentPhrase}
@@ -70,16 +68,16 @@ const Hero = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.4 }}
-                  className="text-2xl md:text-3xl font-bold text-[#F5F5F5] italic"
+                  className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#F5F5F5] italic w-full text-center lg:text-left"
                 >
                   “{dynamicPhrases[currentPhrase]}”
                 </motion.div>
               </AnimatePresence>
             </div>
 
-            <p className="text-gray-400 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+            <p className="text-sm sm:text-base text-gray-400 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium px-4 md:px-0">
               Imagine creating beverages personalized for:{' '}
-              <span className="text-blend-orange font-bold">nutrition, flavor, texture, energy, recovery, hydration</span>{' '}
+              <span className="text-blend-orange font-bold block sm:inline mt-1 sm:mt-0">nutrition, flavor, texture, energy, recovery, hydration</span>{' '}
               in real time.
             </p>
             
@@ -101,30 +99,34 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* Deployment Chips Area */}
-            <div className="relative w-full max-w-md h-full flex flex-col justify-center gap-6">
-              <div className="flex flex-wrap justify-center lg:justify-end gap-3">
+            <div className="relative w-full max-w-lg h-full flex flex-col items-center justify-center">
+              
+              {/* Kiosk Image */}
+              <motion.img 
+                src="/kiosk.png" 
+                alt="BlendYeh Autonomous Kiosk" 
+                className="w-full h-auto object-contain max-h-[450px] drop-shadow-[0_0_50px_rgba(255,106,26,0.25)] relative z-10"
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.4 }}
+              />
+
+              {/* Deployment Chips underneath */}
+              <div className="mt-6 flex flex-wrap justify-center gap-2 w-full relative z-20">
                 {deploymentChips.map((chip, idx) => (
                   <motion.div
                     key={chip.label}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.4 + (idx * 0.1), duration: 0.4 }}
-                    className="glass-card px-5 py-3 flex items-center gap-3 cursor-default"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8 + (idx * 0.1), duration: 0.4 }}
+                    className="glass-card px-3 py-1.5 flex items-center gap-2 cursor-default bg-black/50 backdrop-blur-md"
                   >
-                    <span className="text-xl">{chip.icon}</span>
-                    <span className="text-sm font-bold text-[#F5F5F5] tracking-wide uppercase">{chip.label}</span>
+                    <span className="text-base">{chip.icon}</span>
+                    <span className="text-[10px] font-bold text-[#F5F5F5] tracking-widest uppercase">{chip.label}</span>
                   </motion.div>
                 ))}
               </div>
-              <motion.div 
-                className="text-center lg:text-right mt-6 text-sm text-gray-500 font-mono tracking-widest uppercase"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.2 }}
-              >
-                Interested deployment partners can connect with us.
-              </motion.div>
+
             </div>
           </motion.div>
 

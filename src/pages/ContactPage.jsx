@@ -32,7 +32,7 @@ const ContactPage = () => {
             <div>
               <h3 className="text-lg font-bold mb-1">Email Us</h3>
               <p className="text-gray-400 mb-2">For partnerships and inquiries.</p>
-              <a href="mailto:samrudh.r@foodyeh.io" className="text-white hover:text-blend-orange transition-colors">samrudh.r@foodyeh.io</a>
+              <a href="mailto:info@foodyeh.io" className="text-white hover:text-blend-orange transition-colors">info@foodyeh.io</a>
             </div>
           </div>
 
@@ -57,35 +57,42 @@ const ContactPage = () => {
           animate={{ opacity: 1, x: 0 }}
         >
           <h2 className="text-2xl font-bold mb-8">Send a Message</h2>
-          <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+          <form action="https://formsubmit.co/samrudh.r@foodyeh.io" method="POST" className="space-y-6">
+            {/* Honeypot to prevent spam */}
+            <input type="text" name="_honey" style={{ display: 'none' }} />
+            {/* Disable Captcha for smoother UX, optional */}
+            <input type="hidden" name="_captcha" value="false" />
+            {/* Success redirect */}
+            <input type="hidden" name="_next" value={window.location.href} />
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-sm text-gray-400">First Name</label>
-                <input type="text" className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors" placeholder="John" />
+                <input type="text" name="First Name" required className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors" placeholder="John" />
               </div>
               <div className="space-y-2">
                 <label className="text-sm text-gray-400">Last Name</label>
-                <input type="text" className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors" placeholder="Doe" />
+                <input type="text" name="Last Name" required className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors" placeholder="Doe" />
               </div>
             </div>
             
             <div className="space-y-2">
               <label className="text-sm text-gray-400">Email</label>
-              <input type="email" className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors" placeholder="john@company.com" />
+              <input type="email" name="Email" required className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors" placeholder="john@company.com" />
             </div>
 
             <div className="space-y-2">
               <label className="text-sm text-gray-400">Interest</label>
-              <select className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors appearance-none">
-                <option>Deployment Partner</option>
-                <option>Investor</option>
-                <option>General Inquiry</option>
+              <select name="Interest" className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors appearance-none">
+                <option value="Deployment Partner">Deployment Partner</option>
+                <option value="Investor">Investor</option>
+                <option value="General Inquiry">General Inquiry</option>
               </select>
             </div>
 
             <div className="space-y-2">
               <label className="text-sm text-gray-400">Message</label>
-              <textarea rows={4} className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors" placeholder="How can we collaborate?"></textarea>
+              <textarea name="Message" rows={4} required className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blend-orange transition-colors" placeholder="How can we collaborate?"></textarea>
             </div>
 
             <button type="submit" className="w-full py-4 rounded-lg bg-blend-orange text-white font-bold hover:bg-orange-600 transition-colors shadow-[0_0_15px_rgba(244,108,34,0.3)]">
