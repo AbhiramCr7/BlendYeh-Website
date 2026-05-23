@@ -1,0 +1,24 @@
+name: Auto Sync Fork
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # every 1 hour
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Sync fork with upstream
+        uses: tgymnich/fork-sync@v1.8
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          upstream_repository: samrudhr-coder/BlendYeh-Website
+          target_branch: main
